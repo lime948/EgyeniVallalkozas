@@ -73,7 +73,7 @@ namespace EgyeniVallalkozas.Controllers
             }
         }
 
-        public string KapcsolatMod(int modid, string nev, string cim, string email, string telefon)
+        public string KapcsolatMod(string modid, string nev, string cim, string email, string telefon)
         {
             MySqlConnection conn = new MySqlConnection();
             string connstring = "SERVER = localhost;DATABASE=egyenivallalkozas;UID=root;PASSWORD=;";
@@ -112,7 +112,7 @@ namespace EgyeniVallalkozas.Controllers
             }
         }
 
-        public string KapcsolatTorl(int torlid)
+        public string KapcsolatTorl(string torlid)
         {
             MySqlConnection conn = new MySqlConnection();
             string connstring = "SERVER = localhost;DATABASE=egyenivallalkozas;UID=root;PASSWORD=;";

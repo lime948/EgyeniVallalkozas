@@ -52,26 +52,108 @@ namespace EgyeniVallalkozas
 
         static void KapcsHozz()
         {
-            Console.Clear();
-            Console.WriteLine("=== Kapcsolat hozzáadása");
+            bool b = true;
+            while (b)
+            {
+                Console.Clear();
+                Console.WriteLine("=== Kapcsolat hozzáadása ===");
+                Console.Write("Adja meg a kapcsolat nevét: ");
+                string nev = Console.ReadLine();
+                Console.Write("Adja meg a kapcsolat levelezési címét: ");
+                string cim = Console.ReadLine();
+                Console.Write("Adja meg a kapcsolat email-jét: ");
+                string email = Console.ReadLine();
+                Console.Write("Adja meg a kapcsolat telefonszámát: ");
+                string telefon = Console.ReadLine();
+                if (nev != "" &&  cim != "" && email != "" && telefon != "")
+                {
+                    KapcsController kapcsController = new KapcsController();
+                    string hozzaad = kapcsController.KapcsolatHozz(nev, cim, email, telefon);
+                    Console.WriteLine(hozzaad);
+                    b = false;
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Minden mező kitöltése kötelező!");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+                Console.ReadLine();
+            }
         }
 
         static void KapcsMod()
         {
-            Console.Clear();
-            Console.WriteLine("");
+            bool b = true;
+            while (b)
+            {
+                Console.Clear();
+                Console.WriteLine("=== Kapcsolat módosítása ===");
+                List<Kapcsolatok> kapcslist = new KapcsController().KapcsolatList();
+                KapcsView kapcsview = new KapcsView();
+                kapcsview.KapcsolatokKiir(kapcslist);
+                Console.Write("Adja meg a módosítandó kapcsolat azonosítóját: ");
+                string modid = Console.ReadLine();
+                Console.Write("Adja meg a kapcsolat nevét: ");
+                string nev = Console.ReadLine();
+                Console.Write("Adja meg a kapcsolat levelezési címét: ");
+                string cim = Console.ReadLine();
+                Console.Write("Adja meg a kapcsolat email-jét: ");
+                string email = Console.ReadLine();
+                Console.Write("Adja meg a kapcsolat telefonszámát: ");
+                string telefon = Console.ReadLine();
+                if (nev != "" && cim != "" && email != "" && telefon != "")
+                {
+                    KapcsController kapcsController = new KapcsController();
+                    string hozzaad = kapcsController.KapcsolatMod(modid, nev, cim, email, telefon);
+                    Console.WriteLine(hozzaad);
+                    b = false;
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Minden mező kitöltése kötelező!");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+                Console.ReadLine();
+            }
         }
 
         static void KapcsTorl()
         {
-            Console.Clear();
-            Console.WriteLine("");
+            bool b = true;
+            while (b)
+            {
+                Console.Clear();
+                Console.WriteLine("=== Kapcsolat törlése ===");
+                List<Kapcsolatok> kapcslist = new KapcsController().KapcsolatList();
+                KapcsView kapcsview = new KapcsView();
+                kapcsview.KapcsolatokKiir(kapcslist);
+                Console.Write("Adja meg a törlendő kapcsolat azonosítóját: ");
+                string torlid = Console.ReadLine();
+                if (torlid != "")
+                {
+                    KapcsController kapcsController = new KapcsController();
+                    string hozzaad = kapcsController.KapcsolatTorl(torlid);
+                    Console.WriteLine(hozzaad);
+                    b = false;
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Minden mező kitöltése kötelező!");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+                Console.ReadLine();
+            }
         }
 
         static void KapcsKiir()
         {
             Console.Clear();
-            Console.WriteLine("");
+            List<Kapcsolatok> kapcslist = new KapcsController().KapcsolatList();
+            KapcsView kapcsview = new KapcsView();
+            kapcsview.KapcsolatokKiir(kapcslist);
         }
     }
 }
