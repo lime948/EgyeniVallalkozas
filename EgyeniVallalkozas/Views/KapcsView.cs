@@ -17,7 +17,6 @@ namespace EgyeniVallalkozas.Views
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("╔══════╦═══════════════════════╦════════════════════════════════════════╦═════════════════════════════╦═══════════════╗");
             Console.WriteLine("║  ID  ║ Név                   ║ Levelezési cím                         ║ Email                       ║ Telefon       ║ ");
-
             foreach (var kapcs in kapcsolatok)
             {
                 Console.WriteLine("╠══════╬═══════════════════════╬════════════════════════════════════════╬═════════════════════════════╬═══════════════╣");

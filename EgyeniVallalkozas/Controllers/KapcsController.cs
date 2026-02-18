@@ -15,24 +15,34 @@ namespace EgyeniVallalkozas.Controllers
             MySqlConnection conn = new MySqlConnection();
             string connstring = "SERVER = localhost;DATABASE=egyenivallalkozas;UID=root;PASSWORD=;";
             conn.ConnectionString = connstring;
-            conn.Open();
-            string sql = "SELECT * FROM kapcsolatok";
-            MySqlCommand cmd = new MySqlCommand(sql, conn);
-            List<Kapcsolatok> eredmeny = new List<Kapcsolatok>();
-            MySqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
+            try
             {
-                eredmeny.Add(new Kapcsolatok()
+                conn.Open();
+                string sql = "SELECT * FROM kapcsolatok";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                List<Kapcsolatok> eredmeny = new List<Kapcsolatok>();
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
                 {
-                    Id = reader.GetInt32("Azon"),
-                    Nev = reader.GetString("Nev"),
-                    Cim = reader.GetString("Cim"),
-                    Email = reader.GetString("Email"),
-                    Telefon = reader.GetString("Telefon")
-                });
+                    eredmeny.Add(new Kapcsolatok()
+                    {
+                        Id = reader.GetInt32("Azon"),
+                        Nev = reader.GetString("Nev"),
+                        Cim = reader.GetString("Cim"),
+                        Email = reader.GetString("Email"),
+                        Telefon = reader.GetString("Telefon")
+                    });
+                }
+                conn.Close();
+                return eredmeny;
             }
-            conn.Close();
-            return eredmeny;
+            catch (Exception ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Hiba a kapcsolat létrehozásakor: " + ex.Message);
+                Console.ForegroundColor = ConsoleColor.White;
+                return null;
+            }
         }
 
         public string KapcsolatHozz(string nev, string cim, string email, string telefon)
@@ -68,8 +78,10 @@ namespace EgyeniVallalkozas.Controllers
             }
             catch (Exception ex)
             {
-                string hibauz = "Hiba a kapcsolat létrehozásakor: " + ex.Message;
-                return hibauz;
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Hiba a kapcsolat létrehozásakor: " + ex.Message);
+                Console.ForegroundColor = ConsoleColor.White;
+                return null;
             }
         }
 
@@ -107,8 +119,10 @@ namespace EgyeniVallalkozas.Controllers
             }
             catch (Exception ex)
             {
-                string hibauz = "Hiba a kapcsolat létrehozásakor: " + ex.Message;
-                return hibauz;
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Hiba a kapcsolat létrehozásakor: " + ex.Message);
+                Console.ForegroundColor = ConsoleColor.White;
+                return null;
             }
         }
 
@@ -142,8 +156,10 @@ namespace EgyeniVallalkozas.Controllers
             }
             catch (Exception ex)
             {
-                string hibauz = "Hiba a kapcsolat létrehozásakor: " + ex.Message;
-                return hibauz;
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Hiba a kapcsolat létrehozásakor: " + ex.Message);
+                Console.ForegroundColor = ConsoleColor.White;
+                return null;
             }
         }
     }
