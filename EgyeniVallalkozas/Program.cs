@@ -25,27 +25,40 @@ namespace EgyeniVallalkozas
                 Console.WriteLine("");
                 Console.Write("Válasszon egy menüpontot: ");
                 string valasztas = Console.ReadLine();
-                switch (valasztas)
+                if (valasztas == "")
                 {
-                    case "1":
-                        KapcsHozz();
-                        break;
-                    case "2":
-                        KapcsMod();
-                        break;
-                    case "3":
-                        KapcsTorl();
-                        break;
-                    case "4":
-                        KapcsKiir();
-                        break;
-                    case "5":
-                        Console.WriteLine("Kilépés...");
-                        Environment.Exit(0);
-                        break;
-                    default:
-                        Console.WriteLine("Nincs ilyen menüpont");
-                        break;
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Nem adott meg menüpontot!");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.ReadLine();
+                }
+                else
+                {
+                    switch (valasztas)
+                    {
+                        case "1":
+                            KapcsHozz();
+                            break;
+                        case "2":
+                            KapcsMod();
+                            break;
+                        case "3":
+                            KapcsTorl();
+                            break;
+                        case "4":
+                            KapcsKiir();
+                            break;
+                        case "5":
+                            Console.WriteLine("Kilépés...");
+                            Environment.Exit(0);
+                            break;
+                        default:
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("Nincs ilyen menüpont");
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.ReadLine();
+                            break;
+                    }
                 }
             }
         }

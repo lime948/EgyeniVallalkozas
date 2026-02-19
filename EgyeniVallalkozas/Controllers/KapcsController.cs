@@ -53,7 +53,7 @@ namespace EgyeniVallalkozas.Controllers
             try
             {
                 conn.Open();
-                string sql = "INSERT INTO `kapcsolatok`(`Azon`, `Nev`, `Cim`, `Email`, `Telefon`) VALUES (null,'@nev','@cim','@email','@telefon')";
+                string sql = "INSERT INTO `kapcsolatok`(`Azon`, `Nev`, `Cim`, `Email`, `Telefon`) VALUES (null,@nev,@cim,@email,@telefon)";
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@nev", nev);
                 cmd.Parameters.AddWithValue("@cim", cim);
@@ -93,7 +93,7 @@ namespace EgyeniVallalkozas.Controllers
             try
             {
                 conn.Open();
-                string sql = "UPDATE `kapcsolatok` SET `Nev`='@nev',`Cim`='@cim',`Email`='@email',`Telefon`='@telefon' WHERE Azon = @modid";
+                string sql = "UPDATE `kapcsolatok` SET `Nev`=@nev,`Cim`=@cim,`Email`=@email,`Telefon`=@telefon WHERE Azon = @modid";
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@modid", modid);
                 cmd.Parameters.AddWithValue("@nev", nev);
